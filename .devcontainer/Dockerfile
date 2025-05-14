@@ -22,6 +22,10 @@ RUN groupadd --gid ${USER_GID} ${USERNAME} && \
     useradd --uid ${USER_UID} --gid ${USER_GID} --create-home --shell /bin/bash ${USERNAME}
 RUN usermod --shell "$(which zsh)" ${USERNAME}
 
+COPY ./utils/docker-in-docker.sh /tmp/docker-in-docker.sh
+RUN bash /tmp/docker-in-docker.sh \
+    && rm -f /tmp/docker-in-docker.sh
+
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
 
@@ -36,7 +40,5 @@ RUN fnm install 22 \
     && fnm use 22 \
     && corepack enable pnpm \
     && corepack prepare pnpm@latest --activate
-
-RUN fnm env >> /home/${USERNAME}/.bashrc
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || true
