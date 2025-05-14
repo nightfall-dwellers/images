@@ -42,3 +42,5 @@ RUN fnm install 22 \
     && corepack prepare pnpm@latest --activate
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || true
+
+RUN echo 'eval $(fnm env --shell zsh)' >> /home/${USERNAME}/.zshrc
