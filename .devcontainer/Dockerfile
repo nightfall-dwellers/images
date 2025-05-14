@@ -6,13 +6,13 @@ RUN if id "ubuntu" &>/dev/null; then \
         echo "User 'ubuntu' does not exist for noble"; \
     fi;
 
-RUN apt-get update && apt-get install -y
-
-# Install Dependencies
-RUN apt install zsh curl unzip git wget man-db -y \
+RUN apt-get update \
+    && apt-get -y install --no-install-recommends zsh curl unzip git wget man-db vim ca-certificates \
     && yes | unminimize 2>&1 \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-
+    
 ARG USERNAME=dev
 ARG USER_UID=1000
 ARG USER_GID=1000
@@ -30,7 +30,7 @@ RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir ${FNM_P
 
 # Setup Node.js:
 ENV PATH="${FNM_PATH}:${PATH}"
- 
+
 RUN fnm install 22 \
     && eval $(fnm env) \
     && fnm use 22 \
