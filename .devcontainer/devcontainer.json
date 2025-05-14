@@ -3,6 +3,9 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
   "mounts": [
     "source=afterdark-pnpm-store,target=/home/dev/.local/share/pnpm/store,type=volume"
   ],
