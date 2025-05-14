@@ -12,7 +12,7 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-    
+
 ARG USERNAME=dev
 ARG USER_UID=1000
 ARG USER_GID=1000
