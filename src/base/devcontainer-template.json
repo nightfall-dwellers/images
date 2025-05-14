@@ -1,0 +1,9 @@
+{
+  "id": "base",
+  "version": "0.1.0",
+  "name": "AfterDark Base",
+  "description": "A base template for dev container developers",
+  "documentationURL": "https://github.com/Nightfall-Dwellers/images/blob/main/src/base/README.md",
+  "licenseURL": "https://github.com/Nightfall-Dwellers/images/blob/main/LICENSE",
+  "platforms": ["Any"]
+}
