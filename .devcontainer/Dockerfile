@@ -35,12 +35,15 @@ RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir ${FNM_P
 # Setup Node.js:
 ENV PATH="${FNM_PATH}:${PATH}"
 
-RUN fnm install 22 \
-    && eval $(fnm env) \
-    && fnm use 22 \
-    && corepack enable pnpm \
-    && corepack prepare pnpm@latest --activate
-
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || true
 
-RUN echo 'eval $(fnm env --shell zsh)' >> /home/${USERNAME}/.zshrc
+RUN fnm install 22 \
+    && eval $(fnm env --shell bash) \
+    && fnm use 22 \
+    && corepack enable pnpm \
+    && corepack prepare pnpm@latest --activate \
+    && echo 'eval $(fnm env --shell zsh)' >> /home/${USERNAME}/.zshrc
+
+RUN mkdir -p /home/${USERNAME}/.local/share/pnpm \
+    && echo 'export PNPM_HOME="/home/${USERNAME}/.local/share/pnpm"' >> /home/${USERNAME}/.zshrc \
+    && echo 'export PATH="$PNPM_HOME:$PATH"' >> /home/${USERNAME}/.zshrc
