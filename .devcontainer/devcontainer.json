@@ -1,0 +1,19 @@
+{
+  "name": "AfterDark Base Dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "mounts": [
+    "source=afterdark-pnpm-store,target=/home/dev/.local/share/pnpm/store,type=volume"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": ["esbenp.prettier-vscode"],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "remoteUser": "dev"
+}
