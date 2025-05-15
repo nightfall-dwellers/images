@@ -46,4 +46,5 @@ RUN fnm install 22 \
 
 RUN mkdir -p /home/${USERNAME}/.local/share/pnpm \
     && echo 'export PNPM_HOME="/home/${USERNAME}/.local/share/pnpm"' >> /home/${USERNAME}/.zshrc \
-    && echo 'export PATH="$PNPM_HOME:$PATH"' >> /home/${USERNAME}/.zshrc
+    && echo 'export PATH="$PNPM_HOME:$PATH"' >> /home/${USERNAME}/.zshrc \
+    && echo 'export PATH="./node_modules/.bin:$PATH"' >> /home/${USERNAME}/.zshrc
