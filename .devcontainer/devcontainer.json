@@ -1,19 +1,8 @@
+// More info: https://containers.dev/implementors/json_reference/
 {
-  "name": "AfterDark Base Dev",
-  "build": {
-    "dockerfile": "Dockerfile"
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-18-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
-  "mounts": [
-    "source=afterdark-pnpm-store,target=/home/dev/.local/share/pnpm/store,type=volume"
-  ],
-  "customizations": {
-    "vscode": {
-      "extensions": ["esbenp.prettier-vscode"],
-      "settings": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
-      }
-    }
-  },
-  "remoteUser": "dev"
+  "postCreateCommand": "npm install -g @devcontainers/cli"
 }
